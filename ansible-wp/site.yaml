@@ -1,0 +1,12 @@
+---
+- name: Install WP, MySQL, Nginx and PHP-FPM
+  hosts: wordpress
+  become: yes
+  become_method: sudo
+  roles: 
+    - base
+    - mysql
+    - nginx
+    - php-fpm
+    - wordpress
+
