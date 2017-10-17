@@ -2,6 +2,18 @@
 - name: Instalar nginx
   yum: name=nginx state=present
 
-- name: Copy nginx configuration for wordpress
+- name: Configure SELinux to start mysql on any port - part one
+  seboolean: name=httpd_can_network_connect state=true persistent=yes
+  when: ansible_selinux.status == "enabled"
+
+- name: Configure SELinux to start mysql on any port - part two
+  seboolean: name=httpd_can_network_connect_db state=true persistent=yes
+  when: ansible_selinux.status == "enabled"
+
+
+- name: Copy nginx configuration for wordpress = part one
+  template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+
+- name: Copy nginx configuration for wordpressa - part two
   template: src=default.conf.j2 dest=/etc/nginx/conf.d/default.conf
   notify: restart nginx

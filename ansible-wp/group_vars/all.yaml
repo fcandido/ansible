@@ -7,6 +7,7 @@ wp_db_name: wordpress
 wp_db_user: wordpress
 wp_db_password: secret
 
+wp_db_host: shiva
 mysql_port: 3306
 
 server_hostname: izanami

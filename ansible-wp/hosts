@@ -1,3 +1,6 @@
-[wordpress]
-izanami
+[wordpress-fe]
+ifrit
+
+[wordpress-db]
+shiva
 

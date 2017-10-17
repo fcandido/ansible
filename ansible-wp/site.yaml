@@ -1,11 +1,19 @@
 ---
+
+- name: Install Mariadb
+  hosts: wordpress-db
+  become: yes
+  become_method: sudo
+  roles:
+    - base
+    - mysql
+
 - name: Install WP, MySQL, Nginx and PHP-FPM
-  hosts: wordpress
+  hosts: wordpress-fe
   become: yes
   become_method: sudo
   roles: 
     - base
-    - mysql
     - nginx
     - php-fpm
     - wordpress
