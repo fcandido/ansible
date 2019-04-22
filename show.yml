@@ -1,0 +1,20 @@
+- name: Show info about a VM
+  hosts: localhost
+ 
+  vars:
+    volume_attached: []
+ 
+  tasks:
+    - name: vars
+      debug:
+        var : "{{ item }}"
+      with_items:
+        - "openstack.name"
+        - "openstack.private_v4"
+        - "attachments"
+ 
+    - set_fact:
+        volume_attached: "{{ {'device': attachments[0].device}, {'hostname': openstack.name}, {'hostname': openstack.private_v4} }}"
+ 
+    - debug:
+        var : "{{ volume_attached.hostname  }}"
